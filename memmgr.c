@@ -67,11 +67,6 @@ int main(int argc, const char* argv[]) {
   int page_fault = 0; // # of page faults
 
   printf("ONLY READ 1000 entries\n\n");
-
-  // not quite correct -- should search page table before creating a new entry
-      //   e.g., address # 25 from addresses.txt will fail the assertion
-      // TODO:  add page table code
-      // TODO:  add TLB code
   //part of page table code
   for(int i = 0; i < 256; ++i){
     // make sure table isnt empty
@@ -127,7 +122,7 @@ int main(int argc, const char* argv[]) {
     TLB_miss = 0;
 
     //assert(physical_add == phys_add);
-    // todo: read BINARY_STORE and confirm value matches read value from correct.txt
+    // Reads BINARY_STORE and confirms value matches read value from correct.txt
     fseek(fbin, logic_add, SEEK_SET);
     char c;
     fread (&c, sizeof(char), 1, fbin);
@@ -150,8 +145,6 @@ int main(int argc, const char* argv[]) {
   printf("ALL logical ---> physical assertions PASSED!\n");
   printf("!!! Page table not functioning properly. Commented out assert statement\n");
   printf("--- PTE and TLB partially implementeed \n");
-
-//  printf("NOT CORRECT -- ONLY READ FIRST 20 ENTRIES... TODO: MAKE IT READ ALL ENTRIES\n");
 
   //stuff for debugging
   /*printf("\n\t\t...done.\n");
